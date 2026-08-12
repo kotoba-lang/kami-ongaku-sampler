@@ -67,7 +67,7 @@ Chromium via Playwright — and on
 `audio.synth` oscillator + ADSR envelope for the actual DSP, since this
 repo has none of its own.
 
-Since real sample-file playback is out of scope here, `test/e2e/src/kami/ongaku/e2e/fixture.cljc`
+Since real sample-file playback is out of scope here, `test/e2e/src/kami/ongaku/sampler/e2e/fixture.cljc`
 substitutes a distinct real oscillator frequency for each sample-ref a real
 engine would otherwise point at a decoded audio file — reusing this repo's
 OWN `test/kami/ongaku/sampler_test.cljc` boundary values (60/61 key split,
@@ -86,8 +86,8 @@ interprets it as semitones — the conventional unit — and converts via
 frequency is `330.0 * 2^(7/12) ≈ 494.44 Hz`.)
 
 For a sequence of 14 `(note, velocity, trigger-count)` inputs,
-`test/e2e/src/kami/ongaku/e2e/worklet_dsp.cljs` (compiled into the worklet
-bundle) calls `kami.ongaku.e2e.fixture/resolve-trigger` — which delegates
+`test/e2e/src/kami/ongaku/sampler/e2e/worklet_dsp.cljs` (compiled into the worklet
+bundle) calls `kami.ongaku.sampler.e2e.fixture/resolve-trigger` — which delegates
 the actual decision entirely to this repo's real `kami.ongaku.sampler/trigger`
 — **inside a real `AudioWorkletProcessor`**, then synthesizes the resolved
 freq/gain via `audio.synth`'s real oscillator + ADSR, all inside the
@@ -153,7 +153,7 @@ Setup and run:
 ```bash
 npm --prefix test/e2e install                    # Playwright
 npx --prefix test/e2e playwright install chromium
-bash scripts/build-e2e-bundles.sh                 # compiles kami.ongaku.e2e.{worklet-dsp,main-driver}
+bash scripts/build-e2e-bundles.sh                 # compiles kami.ongaku.sampler.e2e.{worklet-dsp,main-driver}
                                                    # -> test/e2e/page/{worklet-processor,main-driver-bundle}.js
                                                    # (JVM/Clojure CLI build step, not an app-runtime
                                                    # choice -- see scripts/build-e2e-bundles.sh)

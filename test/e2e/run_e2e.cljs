@@ -8,16 +8,16 @@
    AudioWorkletProcessor path (org-w3-webaudio commit e554d853d640).
 
    kami-ongaku-sampler has no sample-file decoding of its own (out of scope
-   per its own README) -- test/e2e/src/kami/ongaku/e2e/fixture.cljc
+   per its own README) -- test/e2e/src/kami/ongaku/sampler/e2e/fixture.cljc
    substitutes a distinct real oscillator frequency for each sample-ref
    (see that namespace's docstring for the exact zone/velocity-layer/
    round-robin/pitch-offset/gain fixture, which reuses this repo's OWN
    sampler_test.cljc boundary values rather than inventing new ones).
 
    For each of a sequence of (note, velocity, trigger-count) inputs, this
-   compiles+runs (via test/e2e/src/kami/ongaku/e2e/{worklet_dsp,main_driver}.cljs,
+   compiles+runs (via test/e2e/src/kami/ongaku/sampler/e2e/{worklet_dsp,main_driver}.cljs,
    scripts/build-e2e-bundles.sh):
-     1. kami.ongaku.e2e.fixture/resolve-trigger (-> kami.ongaku.sampler's
+     1. kami.ongaku.sampler.e2e.fixture/resolve-trigger (-> kami.ongaku.sampler's
         REAL trigger-sample) inside a real AudioWorkletProcessor, in a real
         headless Chromium (Playwright), to decide which zone/variation/
         pitch-offset/gain should play;
@@ -26,7 +26,7 @@
      3. captures the real rendered PCM via OfflineAudioContext.
 
    Then, right here (no browser involved), it:
-     a. requires kami.ongaku.e2e.fixture directly (the SAME .cljc source the
+     a. requires kami.ongaku.sampler.e2e.fixture directly (the SAME .cljc source the
         browser bundle was compiled from) and recomputes the trigger
         decision offline, to cross-verify the browser's decision
         bit-for-bit;
@@ -47,7 +47,7 @@
             ["fs" :as fs]
             ["path" :as path]
             [audio.synth :as synth]
-            [kami.ongaku.e2e.fixture :as fixture]))
+            [kami.ongaku.sampler.e2e.fixture :as fixture]))
 
 (def site-dir (path/join (js/process.cwd) "test" "e2e" "page"))
 (def port 8941)
@@ -129,7 +129,7 @@
 
 (defn offline-waveform [decision]
   "-> vector of doubles, or nil if decision is nil. The exact same
-   computation as kami.ongaku.e2e.worklet-dsp/synthesize, run here directly
+   computation as kami.ongaku.sampler.e2e.worklet-dsp/synthesize, run here directly
    on the .cljc source of truth (no browser/worklet involved)."
   (when decision
     (let [osc (synth/sine-wave (:freq decision) SR dur-samples)
