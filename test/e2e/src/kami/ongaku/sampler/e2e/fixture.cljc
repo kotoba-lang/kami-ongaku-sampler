@@ -1,4 +1,4 @@
-(ns kami.ongaku.e2e.fixture
+(ns kami.ongaku.sampler.e2e.fixture
   "Shared, portable (.cljc — JVM + cljs, required unmodified by BOTH the
    real-browser worklet bundle and the offline nbb cross-check) fixture for
    kami-ongaku-sampler's real-browser AudioWorklet trigger E2E (see

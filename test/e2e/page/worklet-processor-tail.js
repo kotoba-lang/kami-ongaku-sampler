@@ -8,7 +8,7 @@
 // unambiguous.
 //
 // All resolution + DSP math comes from the compiled bundle's
-// kami.ongaku.e2e.worklet_dsp.render_trigger (i.e. from kami-ongaku-sampler's
+// kami.ongaku.sampler.e2e.worklet_dsp.render_trigger (i.e. from kami-ongaku-sampler's
 // OWN trigger/lookup logic + kotoba-lang/audio's OWN oscillator/ADSR, not
 // reimplementations) -- this file only (a) calls it once in the
 // constructor, (b) posts the resolved decision back to the main thread over
@@ -21,7 +21,7 @@ class KamiSamplerTriggerProcessor extends AudioWorkletProcessor {
   constructor(options) {
     super();
     const p = (options && options.processorOptions) || {};
-    const result = kami.ongaku.e2e.worklet_dsp.render_trigger(
+    const result = kami.ongaku.sampler.e2e.worklet_dsp.render_trigger(
       p.note, p.velocity, p.triggerCount, p.sr, p.durSamples, p.gateOff,
       p.attack, p.decay, p.sustain, p.release);
     this.buffer = result.pcm;

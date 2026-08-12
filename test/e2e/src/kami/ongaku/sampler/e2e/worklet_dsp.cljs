@@ -1,10 +1,10 @@
-(ns kami.ongaku.e2e.worklet-dsp
+(ns kami.ongaku.sampler.e2e.worklet-dsp
   "E2E-only, worklet-side bundle for kami-ongaku-sampler's real-browser
    AudioWorkletProcessor trigger proof (see README, 'Real-browser
    AudioWorklet trigger proof'). Requires kami.ongaku.sampler (this repo's
    own real trigger/lookup logic, unmodified) and kotoba-lang/audio's own
    audio.synth (the real oscillator + ADSR DSP) directly -- not
-   reimplementations -- via the shared kami.ongaku.e2e.fixture (which is
+   reimplementations -- via the shared kami.ongaku.sampler.e2e.fixture (which is
    ALSO required, unmodified, by test/e2e/run_e2e.cljs's offline nbb
    cross-check).
 
@@ -20,9 +20,9 @@
    against Closure's :advanced whole-program DCE, per org-w3-webaudio's own
    worklet_dsp.cljs docstring), callable from the hand-written
    AudioWorkletProcessor tail (test/e2e/page/worklet-processor-tail.js) at
-   its munged path kami.ongaku.e2e.worklet_dsp.render_trigger."
+   its munged path kami.ongaku.sampler.e2e.worklet_dsp.render_trigger."
   (:require [audio.synth :as synth]
-            [kami.ongaku.e2e.fixture :as fixture]))
+            [kami.ongaku.sampler.e2e.fixture :as fixture]))
 
 (defn- silence [dur-samples]
   (js/Float32Array. dur-samples))
@@ -37,7 +37,7 @@
 
 (defn ^:export render-trigger
   "Resolves (note, velocity, trigger-count) via kami.ongaku.sampler (through
-   kami.ongaku.e2e.fixture/resolve-trigger) and, if a layer/variation
+   kami.ongaku.sampler.e2e.fixture/resolve-trigger) and, if a layer/variation
    matched, synthesizes it as a real oscillator + ADSR envelope (via
    kotoba-lang/audio's audio.synth -- this *is* that code running inside the
    worklet, not a port of it). Returns
