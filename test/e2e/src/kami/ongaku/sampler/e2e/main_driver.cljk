@@ -16,7 +16,7 @@
    not arbitrary data -- the decision has to cross the MessagePort, which is
    exactly why org-w3-webaudio's binding layer exposes port/on-message!),
    renders, and captures the actual PCM. Returns an array of
-   {input, decision, pcm, sampleRate} for test/e2e/run_e2e.cljs (nbb) to
+   {input, decision, pcm, sampleRate} for test/e2e/run_e2e.cljk (nbb) to
    cross-check against its own, independently-computed offline decision +
    measured frequency.
 

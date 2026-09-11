@@ -47,7 +47,7 @@ real sampler engine would sit on top of.
 ## Real-browser AudioWorklet trigger proof (`test/e2e/`)
 
 **This is a test/proof harness, not a claim that this repo does audio
-synthesis or sample-file decoding.** `test/kami/ongaku/sampler_test.cljc`
+synthesis or sample-file decoding.** `test/kami/ongaku/sampler_test.cljk`
 already unit-tests the trigger/lookup logic exhaustively against synthetic
 sample-refs (keywords, never audio). This E2E closes the one gap that kind
 of test can't: it proves `kami.ongaku.sampler/trigger-sample`'s
@@ -67,10 +67,10 @@ Chromium via Playwright — and on
 `audio.synth` oscillator + ADSR envelope for the actual DSP, since this
 repo has none of its own.
 
-Since real sample-file playback is out of scope here, `test/e2e/src/kami/ongaku/sampler/e2e/fixture.cljc`
+Since real sample-file playback is out of scope here, `test/e2e/src/kami/ongaku/sampler/e2e/fixture.cljk`
 substitutes a distinct real oscillator frequency for each sample-ref a real
 engine would otherwise point at a decoded audio file — reusing this repo's
-OWN `test/kami/ongaku/sampler_test.cljc` boundary values (60/61 key split,
+OWN `test/kami/ongaku/sampler_test.cljk` boundary values (60/61 key split,
 63/64 velocity split, 1/127 range bounds), not new numbers invented for
 this harness:
 
@@ -86,7 +86,7 @@ interprets it as semitones — the conventional unit — and converts via
 frequency is `330.0 * 2^(7/12) ≈ 494.44 Hz`.)
 
 For a sequence of 14 `(note, velocity, trigger-count)` inputs,
-`test/e2e/src/kami/ongaku/sampler/e2e/worklet_dsp.cljs` (compiled into the worklet
+`test/e2e/src/kami/ongaku/sampler/e2e/worklet_dsp.cljk` (compiled into the worklet
 bundle) calls `kami.ongaku.sampler.e2e.fixture/resolve-trigger` — which delegates
 the actual decision entirely to this repo's real `kami.ongaku.sampler/trigger`
 — **inside a real `AudioWorkletProcessor`**, then synthesizes the resolved
@@ -94,7 +94,7 @@ freq/gain via `audio.synth`'s real oscillator + ADSR, all inside the
 worklet. The resolved decision is posted back to the main thread over the
 `AudioWorkletNode.port` (a worklet's `process()` return value carries no
 data, only a continue/stop signal) and the rendered PCM is captured via
-`OfflineAudioContext`. `test/e2e/run_e2e.cljs` (nbb) then requires the
+`OfflineAudioContext`. `test/e2e/run_e2e.cljk` (nbb) then requires the
 *same* `fixture.cljc` and `audio.synth` sources directly — a different
 runtime, no browser involved — to independently recompute the expected
 decision and waveform, and:
@@ -158,7 +158,7 @@ bash scripts/build-e2e-bundles.sh                 # compiles kami.ongaku.sampler
                                                    # (JVM/Clojure CLI build step, not an app-runtime
                                                    # choice -- see scripts/build-e2e-bundles.sh)
 AUDIO_SRC_PATH=/path/to/kotoba-lang/audio/src
-nbb -cp "src:test/e2e/src:$AUDIO_SRC_PATH" test/e2e/run_e2e.cljs
+nbb -cp "src:test/e2e/src:$AUDIO_SRC_PATH" test/e2e/run_e2e.cljk
 ```
 
 Exits 0 and prints the full per-input report (resolved decision, decision
