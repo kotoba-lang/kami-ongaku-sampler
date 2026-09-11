@@ -158,7 +158,7 @@ bash scripts/build-e2e-bundles.sh                 # compiles kami.ongaku.sampler
                                                    # (JVM/Clojure CLI build step, not an app-runtime
                                                    # choice -- see scripts/build-e2e-bundles.sh)
 AUDIO_SRC_PATH=/path/to/kotoba-lang/audio/src
-nbb -cp "src:test/e2e/src:$AUDIO_SRC_PATH" test/e2e/run_e2e.cljk
+kbb --backend sci -cp "src:test/e2e/src:$AUDIO_SRC_PATH" test/e2e/run_e2e.cljk
 ```
 
 Exits 0 and prints the full per-input report (resolved decision, decision
@@ -174,7 +174,7 @@ build artifacts, gitignored.
 ## Test
 
 ```
-clojure -M:test
+kbb -M:test
 ```
 
 ## License
