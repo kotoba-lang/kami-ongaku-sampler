@@ -8,7 +8,7 @@
    AudioWorkletProcessor path (org-w3-webaudio commit e554d853d640).
 
    kami-ongaku-sampler has no sample-file decoding of its own (out of scope
-   per its own README) -- test/e2e/src/kami/ongaku/sampler/e2e/fixture.cljc
+   per its own README) -- test/e2e/src/kami/ongaku/sampler/e2e/fixture.cljk
    substitutes a distinct real oscillator frequency for each sample-ref
    (see that namespace's docstring for the exact zone/velocity-layer/
    round-robin/pitch-offset/gain fixture, which reuses this repo's OWN
@@ -41,7 +41,7 @@
    inside test/e2e/ for the Playwright dependency, and this repo's own src/
    plus a checkout of kotoba-lang/audio on the nbb classpath:
 
-     nbb -cp \"src:test/e2e/src:$AUDIO_SRC_PATH\" test/e2e/run_e2e.cljs"
+     nbb -cp \"src:test/e2e/src:$AUDIO_SRC_PATH\" test/e2e/run_e2e.cljk"
   (:require ["playwright" :refer [chromium]]
             ["http" :as http]
             ["fs" :as fs]
@@ -87,7 +87,7 @@
 (def steady-end gate-off)
 
 ;; --- test inputs ---------------------------------------------------------
-;; Reuses kami-ongaku-sampler's OWN test/kami/ongaku/sampler_test.cljc
+;; Reuses kami-ongaku-sampler's OWN test/kami/ongaku/sampler_test.cljk
 ;; boundary values (60/61 key split, 63/64 velocity split, 1/127 range
 ;; bounds) rather than inventing new numbers -- these are the exact cases
 ;; already unit-tested, now proven to drive correct real audio.

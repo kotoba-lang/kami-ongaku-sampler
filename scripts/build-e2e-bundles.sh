@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 # Compiles the two bundles needed for kami-ongaku-sampler's real-browser
-# AudioWorkletProcessor trigger E2E (test/e2e/run_e2e.cljs):
+# AudioWorkletProcessor trigger E2E (test/e2e/run_e2e.cljk):
 #
-#   1. test/e2e/src/kami/ongaku/sampler/e2e/main_driver.cljs -> main-thread bundle
+#   1. test/e2e/src/kami/ongaku/sampler/e2e/main_driver.cljk -> main-thread bundle
 #      (page/main-driver-bundle.js). Uses kotoba-lang/org-w3-webaudio's own
 #      src/w3/webaudio.cljs binding layer to drive OfflineAudioContext /
 #      audioWorklet.addModule / AudioWorkletNode from the page, once per
 #      (note, velocity, trigger-count) input.
-#   2. test/e2e/src/kami/ongaku/sampler/e2e/worklet_dsp.cljs -> worklet-side bundle
+#   2. test/e2e/src/kami/ongaku/sampler/e2e/worklet_dsp.cljk -> worklet-side bundle
 #      (page/worklet-processor.js). Requires this repo's own
 #      kami.ongaku.sampler (real trigger/lookup logic) and
 #      kotoba-lang/audio's audio.synth (real oscillator + ADSR DSP) via the
-#      shared test/e2e/src/kami/ongaku/sampler/e2e/fixture.cljc, and exports a
+#      shared test/e2e/src/kami/ongaku/sampler/e2e/fixture.cljk, and exports a
 #      render-trigger entrypoint consumed by the hand-written
 #      AudioWorkletProcessor registration in page/worklet-processor-tail.js.
 #

@@ -5,7 +5,7 @@
    own real trigger/lookup logic, unmodified) and kotoba-lang/audio's own
    audio.synth (the real oscillator + ADSR DSP) directly -- not
    reimplementations -- via the shared kami.ongaku.sampler.e2e.fixture (which is
-   ALSO required, unmodified, by test/e2e/run_e2e.cljs's offline nbb
+   ALSO required, unmodified, by test/e2e/run_e2e.cljk's offline nbb
    cross-check).
 
    Built the same way org-w3-webaudio's own test/e2e/src/w3/webaudio/e2e/

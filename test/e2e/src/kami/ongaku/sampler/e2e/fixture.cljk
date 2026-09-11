@@ -2,7 +2,7 @@
   "Shared, portable (.cljc — JVM + cljs, required unmodified by BOTH the
    real-browser worklet bundle and the offline nbb cross-check) fixture for
    kami-ongaku-sampler's real-browser AudioWorklet trigger E2E (see
-   test/e2e/run_e2e.cljs and README, 'Real-browser AudioWorklet trigger
+   test/e2e/run_e2e.cljk and README, 'Real-browser AudioWorklet trigger
    proof').
 
    kami-ongaku-sampler has no audio synthesis or sample-file decoding of its
@@ -15,7 +15,7 @@
    substitute, not a claim that kami-ongaku-sampler does synthesis.
 
    Sample map (reuses kami-ongaku-sampler's OWN test fixture boundary
-   values from test/kami/ongaku/sampler_test.cljc -- soft-layer/hard-layer/
+   values from test/kami/ongaku/sampler_test.cljk -- soft-layer/hard-layer/
    other-key-layer -- so the boundary cases this E2E exercises are the same
    ones already unit-tested, not new numbers invented for this harness):
 
