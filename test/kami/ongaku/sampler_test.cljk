@@ -1,6 +1,6 @@
 (ns kami.ongaku.sampler-test
   (:require [kami.ongaku.sampler :as sampler]
-            #?(:clj [clojure.test :refer [deftest is testing]]
+            #?(:clj [kotoba.test :refer [deftest is testing]]
                :cljs [cljs.test :refer [deftest is testing]])))
 
 ;; --- fixtures ---------------------------------------------------------
